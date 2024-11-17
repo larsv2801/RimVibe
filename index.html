@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+h1 {
+    color: #ff4343;
+    text-align: center;
+    font-family: arial;
+}
+h3 {
+    color: white;
+    font-family: arial;
+    margin-left: 1.5vw;
+}
+.scrolldiv {
+    width: 100vw;
+    height: 20vw;
+    display: flex;
+    overflow-x: auto; /* Maakt horizontaal scrollen mogelijk */
+    scrollbar-width:none;/* Optioneel: voegt ruimte toe aan de boven- en onderkant */
+}
+.scrolldiv::-webkit-scrollbar {
+  display: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.serie {
+    width: 35vw;
+    height: 20vw;
+    background-color: green;
+    border-radius: 15px;
+    margin-left: 1vw;
+    margin-right: 0.5vw;
+    overflow: hidden;
+    flex-shrink: 0; /* Voorkomt dat de divs krimpen */
+    display: inline-block;
+    cursor:pointer;
+    transition:0.4s;
+}
+.serie:hover {
+    border-radius: 5px;
+    transition:0.4s;
+}
+.seriethumbmail:hover {
+    border-radius: 5px;
+    transition:0.4s;
+}
+.seriethumbmail {
+    display: inline-block;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:0.4s;
+}
+.categorie {
+    width: 15vw;
+    height: 10vw;
+    background-color: #ff4343;
+    border-radius: 15px;
+    margin-left: 1vw;
+    margin-right: 0.5vw;
+    overflow: hidden;
+    flex-shrink: 0; /* Voorkomt dat de divs krimpen */
+    display: inline-block;
+    cursor:pointer;
+    transition:0.4s;
+    text-align:center;
+    color:white;
+    font-family:arial;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.7vw;
+}
+.categorie:hover {
+    border-radius: 5px;
+    transition:0.4s;
+}
+#seriediv{
+z-index:999;
+position:absolute;
+top:0;
+left:0;
+display:none;
+background-color:#000000;
+height:100vh;
+width:100vw;
+}
+#seriefoto{
+    width: 100vw;
+    height: auto; /* Zorgt ervoor dat de hoogte proportioneel is */
+    max-height: 35vh; /* Maximaliseert de hoogte van de afbeelding zodat deze niet te groot wordt */
+    border-radius: 0 0 15px 15px;
+    object-fit: cover;
+}
+#afldiv{
+width:100vw;
+height: calc(65vh - 2vw);
+position:absolute;
+top:35%;
+padding:1vw;
+overflow-y:auto;
+}
+.afl{
+width:30vw;
+height:15vw;
+border-radius:15px;
+overflow: hidden;
+cursor:pointer;
+background-color: blue;
+object-fit: cover;
+}
+.afltitel{
+color:white;
+font-size: 2vw;
+font-family:arial;
+margin-left:3vw;
+display:flex;
+}
+.afl img{
+    width: 100%; /* Zorgt ervoor dat de afbeelding de volledige breedte vult */
+    height: 100%; /* Zorgt ervoor dat de afbeelding de volledige hoogte vult */
+    object-fit: cover; /* Zorgt ervoor dat de afbeelding proportioneel wordt geschaald zonder lege ruimte */
+    display: block; /* Verwijdert ongewenste witruimte rondom afbeeldingen */
+    border-radius: 15px;
+}
+#afldiv {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw; /* Optioneel: ruimte tussen afleveringen */
+}
+
+.aflcontent {
+    display: flex;
+    align-items: center;/* Zorgt ervoor dat de titel verticaal gecentreerd is naast de afbeelding */
+    gap: 2vw; /* Ruimte tussen de afbeelding en de titel */
+}
+#homebutton{
+width:5vw;
+height:5vw;
+border-radius:15px;
+position:absolute;
+top:1vw;
+left:1vw;
+outline:none;
+border:none;
+background-color: #ff4343;
+cursor:pointer;
+}
+svg{
+color:white;
+fill:white;
+width:3vw;
+height:3vw; 
+}
+iframe{
+display:none;
+width:100vw;
+height:100vh;
+padding:0;
+margin:0;
+z-index:9999;
+}
+#backbutton{
+width:5vw;
+height:5vw;
+border-radius:15px;
+position:absolute;
+top:1vw;
+left:1vw;
+outline:none;
+border:none;
+background-color: #ff4343;
+cursor:pointer;
+display:none;
+}
+</style>
+</head>
+<body>
+    <button onclick="back()"id="backbutton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"/></svg></button>
+    <iframe id="ifvideo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div id="home">
+<h1>RimVibe</h1>
+<h3>popular series:</h3>
+<div class="scrolldiv">
+    <div onclick="serie('https://yt3.googleusercontent.com/6YcKuzYiQG6S_E23j_A5Xsfhb5Apt4lItj_-40mv9zOKxA2RxxBpfLgQukVT_OPlvsFNqGDG1g=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 4, 'rev')" class="serie"><img class="seriethumbmail" src="https://yt3.googleusercontent.com/6YcKuzYiQG6S_E23j_A5Xsfhb5Apt4lItj_-40mv9zOKxA2RxxBpfLgQukVT_OPlvsFNqGDG1g=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"></div>
+    <div onclick="serie('https://yt3.googleusercontent.com/vZz1ISp-SUgW2heNTgoAqGcJSGef21cjrSirAdObX4Z9D8MjGe0PWGXf3mXWPDAn0MXkh5Igaw=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 2, 'race')" class="serie"><img class="seriethumbmail" src="https://d2n9h2wits23hf.cloudfront.net/image/v1/static/6057949432001/1b7579dc-fa96-4201-8f95-8ab48fe44839/4517d373-6e57-4606-90e8-6198e2e80e9b/997x516/match/image.jpg"></div>
+    <div onclick="serie('https://rcdriftqld.com.au/wp-content/uploads/2024/02/The-History-of-RC-Drifting.jpg.webp', 4, 'hist')"class="serie"><img class="seriethumbmail" src="https://rcdriftqld.com.au/wp-content/uploads/2024/02/The-History-of-RC-Drifting.jpg.webp"></div>
+    <div onclick="serie('https://yt3.googleusercontent.com/m9gmOd0ii9hHsrzlvqycbFCJoH3OqQpwMmNwV58lJMPK_95KJmDArCol85zqkE3SVWdf0uocug=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 4, 'mus')"class="serie"><img class="seriethumbmail" src="https://i.scdn.co/image/ab67616d0000b273d5364315aa01c20600111ad3"></div>
+    <div onclick="serie('https://yt3.googleusercontent.com/Yzpz2YR7moaunrQU9yJ2Hi-9GbYf7qqG_RFrpnmm8KTJqj9FkZLlYKSivOe6vDrcGfekrWID=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 3, 'drift')"class="serie"><img class="seriethumbmail" src="https://i.ytimg.com/vi/CkA4pTSl4H8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDEh-JEG_bfW4QB_WGrSQLxfM4LLQ"></div>
+    <div class="serie"><img class="seriethumbmail" src="https://static.vecteezy.com/system/resources/thumbnails/003/582/701/small_2x/coming-soon-background-illustration-template-design-free-vector.jpg"></div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<h3>Categories:</h3>
+<div class="scrolldiv">
+    <div class="categorie"><p>classic</p></div>
+    <div class="categorie"><p>JDM</p></div>
+    <div class="categorie"><p>Daily Driver</p></div>
+    <div class="categorie"><p>race</p></div>
+    <div class="categorie"><p>drift</p></div>
+    <div class="categorie"><p>ralley</p></div>
+    <div class="categorie"><p>cartoon</p></div>
+    <div class="categorie"><p>modding</p></div>
+</div>
+</div>
+<div id="seriediv">
+<button onclick="home()" id="homebutton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg></button>
+<img  id="seriefoto" src="">
+<div id="afldiv">
+    <!--<div class="aflcontent">
+    <div class="afl"></div>
+    <p class="afltitel">titel</p>
+</div>
+<div class="aflcontent">
+    <div class="afl"></div>
+    <p class="afltitel">titel</p>
+</div>
+<div class="aflcontent">
+    <div class="afl"></div>
+    <p class="afltitel">titel</p>
+</div>-->
+</div>
+</div>
+<script>
+function serie(welke, hoeveel, voorvoegsel){
+    document.getElementById("afldiv").innerHTML = "";
+    document.getElementById("seriediv").style.display = "flex";
+    document.getElementById("seriefoto").src = welke;
+
+    for(let i = 0; i < hoeveel; i++){
+        const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch(`https://gravel-spiffy-floss.glitch.me/${voorvoegsel}${i}`, requestOptions)
+.then((response) => response.json())
+          .then((result) => {
+            var newDiv = document.createElement("div");
+              newDiv.classList.add("aflcontent");
+              newDiv.innerHTML = `
+        <div class="afl" onclick="jef('${result.video}')">
+        <img onclick="jef('${result.video}')" src="${result.afbeelding}">
+    </div>
+    <p class="afltitel">${result.titel}</p>
+    `;
+              var h = document.getElementById("afldiv");
+              h.appendChild(newDiv);
+          })
+  .catch((error) => console.error(error));
+    }
+}
+function home(){
+ document.getElementById("seriediv").style.display = "none";
+ document.getElementById("backbutton").style.display = "none";
+}
+function jef(videoUrl) {
+    document.getElementById("seriediv").style.display = "none";
+    document.getElementById("backbutton").style.display = "block";
+    console.log("Speel video af:", videoUrl);
+    const iframe = document.getElementById("ifvideo");
+    iframe.src = videoUrl; // Stel de video-URL in
+    iframe.style.display = "block";
+    // Voeg hier de code toe om de video af te spelen, bijvoorbeeld met een videospeler.
+}
+function back(){
+    document.getElementById("seriediv").style.display = "flex";
+    const iframe = document.getElementById("ifvideo");
+    iframe.src = " "; // Stel de video-URL in
+    iframe.style.display = "none";
+    document.getElementById("backbutton").style.display = "none";
+}
+</script>
+</body>
+</html>
+
