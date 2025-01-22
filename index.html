@@ -23,19 +23,14 @@ h3 {
     width: 100vw;
     height: 20vw;
     display: flex;
-    overflow-x: auto; /* Maakt horizontaal scrollen mogelijk */
-    scrollbar-width:none;/* Optioneel: voegt ruimte toe aan de boven- en onderkant */
-}
-.scrolldiv::-webkit-scrollbar {
-  display: none;
-}
-body::-webkit-scrollbar {
-  display: none;
+    overflow-x: auto;
+    overflow-y:hidden;
+    scrollbar-color: gray rgba(0,0,0,0);/* Maakt horizontaal scrollen mogelijk *//* Optioneel: voegt ruimte toe aan de boven- en onderkant */
 }
 .serie {
     width: 35vw;
     height: 20vw;
-    background-color: green;
+    background-color: gray;
     border-radius: 15px;
     margin-left: 1vw;
     margin-right: 0.5vw;
@@ -184,10 +179,6 @@ cursor:pointer;
 display:none;
 }
 </style>
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <button onclick="back()"id="backbutton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"/></svg></button>
@@ -196,11 +187,11 @@ display:none;
 <h1>RimVibe</h1>
 <h3>popular series:</h3>
 <div class="scrolldiv">
-    <div onclick="serie('https://yt3.googleusercontent.com/6YcKuzYiQG6S_E23j_A5Xsfhb5Apt4lItj_-40mv9zOKxA2RxxBpfLgQukVT_OPlvsFNqGDG1g=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 4, 'rev')" class="serie"><img class="seriethumbmail" src="https://yt3.googleusercontent.com/6YcKuzYiQG6S_E23j_A5Xsfhb5Apt4lItj_-40mv9zOKxA2RxxBpfLgQukVT_OPlvsFNqGDG1g=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"></div>
-    <div onclick="serie('https://yt3.googleusercontent.com/vZz1ISp-SUgW2heNTgoAqGcJSGef21cjrSirAdObX4Z9D8MjGe0PWGXf3mXWPDAn0MXkh5Igaw=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 5, 'race')" class="serie"><img class="seriethumbmail" src="https://d2n9h2wits23hf.cloudfront.net/image/v1/static/6057949432001/1b7579dc-fa96-4201-8f95-8ab48fe44839/4517d373-6e57-4606-90e8-6198e2e80e9b/997x516/match/image.jpg"></div>
-    <div onclick="serie('https://rcdriftqld.com.au/wp-content/uploads/2024/02/The-History-of-RC-Drifting.jpg.webp', 4, 'hist')"class="serie"><img class="seriethumbmail" src="https://rcdriftqld.com.au/wp-content/uploads/2024/02/The-History-of-RC-Drifting.jpg.webp"></div>
+    <div onclick="serie('https://wallpapers.com/images/hd/ultra-wide-4k-car-3lxbiug6ognbvkxm.jpg', 5, 'rev')" class="serie"><img class="seriethumbmail" src="https://image.jimcdn.com/app/cms/image/transf/none/path/saef2cc1f713e1518/image/i7b8d762d6dd27e15/version/1711272767/nieuwsgierig-naar-wat-onze-klanten-te-zeggen-hebben-ontdek-de-ervaringen-en-reviews-van-tevreden-klanten-bij-ons-bedrijf-jouw-feedback-is-onze-drijvende-kracht-om-te-blijven-streven-naar-uitmuntendheid-bekijk-onze-reviews-vandaag-nog.jpg"></div>
+    <div onclick="serie('https://www.motorsportmagazine.com/wp-content/uploads/2024/04/Autonomous-Racing-League-800x450.jpg', 5, 'race')" class="serie"><img class="seriethumbmail" src="https://d2n9h2wits23hf.cloudfront.net/image/v1/static/6057949432001/1b7579dc-fa96-4201-8f95-8ab48fe44839/4517d373-6e57-4606-90e8-6198e2e80e9b/997x516/match/image.jpg"></div>
+    <div onclick="serie('https://rcdriftqld.com.au/wp-content/uploads/2024/02/The-History-of-RC-Drifting.jpg.webp', 3, 'hist')"class="serie"><img class="seriethumbmail" src="https://rcdriftqld.com.au/wp-content/uploads/2024/02/The-History-of-RC-Drifting.jpg.webp"></div>
     <div onclick="serie('https://yt3.googleusercontent.com/m9gmOd0ii9hHsrzlvqycbFCJoH3OqQpwMmNwV58lJMPK_95KJmDArCol85zqkE3SVWdf0uocug=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 4, 'mus')"class="serie"><img class="seriethumbmail" src="https://i.scdn.co/image/ab67616d0000b273d5364315aa01c20600111ad3"></div>
-    <div onclick="serie('https://yt3.googleusercontent.com/Yzpz2YR7moaunrQU9yJ2Hi-9GbYf7qqG_RFrpnmm8KTJqj9FkZLlYKSivOe6vDrcGfekrWID=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj', 3, 'drift')"class="serie"><img class="seriethumbmail" src="https://i.ytimg.com/vi/CkA4pTSl4H8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDEh-JEG_bfW4QB_WGrSQLxfM4LLQ"></div>
+    <div onclick="serie('https://img.redbull.com/images/c_crop,w_3840,h_1920,x_0,y_207/c_auto,w_1200,h_630/f_auto,q_auto/redbullcom/2023/3/11/vh10bj8ttqxisaneqcv5/elias-and-joe-hountondji-drift-racing', 3, 'drift')"class="serie"><img class="seriethumbmail" src="https://i.ytimg.com/vi/CkA4pTSl4H8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDEh-JEG_bfW4QB_WGrSQLxfM4LLQ"></div>
     <div class="serie"><img class="seriethumbmail" src="https://static.vecteezy.com/system/resources/thumbnails/003/582/701/small_2x/coming-soon-background-illustration-template-design-free-vector.jpg"></div>
 </div>
 <br>
@@ -249,7 +240,7 @@ function serie(welke, hoeveel, voorvoegsel){
   redirect: "follow"
 };
 
-fetch(`https://gravel-spiffy-floss.glitch.me/${voorvoegsel}${i}`, requestOptions)
+fetch(`https://elemental-admitted-koi.glitch.me/${voorvoegsel}${i}`, requestOptions)
 .then((response) => response.json())
           .then((result) => {
             var newDiv = document.createElement("div");
